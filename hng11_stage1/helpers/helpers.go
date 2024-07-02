@@ -3,6 +3,7 @@ package helpers
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net"
 	"net/http"
 	"os"
@@ -40,26 +41,28 @@ func GetClientLocation(clientIp string) string {
 	return result.City
 }
 
-func GetTemperatureByCity(city string) float32 {
-	apiKey := os.Getenv("WEATHER_API_KEY")
-	url := fmt.Sprintf("http://api.weatherapi.com/v1/current.json?key=%s&q=%s", apiKey, city)
+func GetTemperatureByCity(city string) float64 {
+	var client http.Client
 
-	resp, err := http.Get(url)
+	resp, err := client.Get(fmt.Sprintf("http://api.weatherapi.com/v1/current.json?key=%s&q=%s&aqi=no", os.Getenv("WEATHER_API_KEY"), city))
 	if err != nil {
 		return 0
 	}
 	defer resp.Body.Close()
 
-	var weatherData struct {
-		Current struct {
-			Temperature float32 `json:"temp_c"`
-		} `json:"current"`
+	if resp.StatusCode == http.StatusOK {
+		var data map[string]interface{}
+
+		err := json.NewDecoder(resp.Body).Decode(&data)
+		log.Println(data)
+		if err == nil {
+			if curr, ok := data["current"].(map[string]interface{}); ok {
+				if temp, ok := curr["temp_c"].(float64); ok {
+					return temp
+				}
+			}
+		}
 	}
 
-	err = json.NewDecoder(resp.Body).Decode(&weatherData)
-	if err != nil {
-		return 0
-	}
-
-	return weatherData.Current.Temperature
+	return 0
 }
