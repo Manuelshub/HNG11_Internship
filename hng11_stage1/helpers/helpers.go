@@ -53,9 +53,9 @@ func GetTemperatureByCity(city string) float64 {
 	if resp.StatusCode == http.StatusOK {
 		var data map[string]interface{}
 
-		err := json.NewDecoder(resp.Body).Decode(&data)
+		errCode := json.NewDecoder(resp.Body).Decode(&data)
 		log.Println(data)
-		if err == nil {
+		if errCode == nil {
 			if curr, ok := data["current"].(map[string]interface{}); ok {
 				if temp, ok := curr["temp_c"].(float64); ok {
 					return temp
