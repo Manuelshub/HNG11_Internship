@@ -32,7 +32,7 @@ func HelloHandler(w http.ResponseWriter, r *http.Request) {
 	clientIP := helpers.GetClientIp(r)
 	clientCity := helpers.GetClientLocation(clientIP)
 	temperature := helpers.GetTemperatureByCity(clientCity)
-	greeting := fmt.Sprintf("Hello %s! The temperature is %f degrees Celcius in %s", visitorName, temperature, clientCity)
+	greeting := fmt.Sprintf("Hello %s!, The temperature is %f degrees Celcius in %s", visitorName, temperature, clientCity)
 
 	response := Response{
 		ClientIP: clientIP,
