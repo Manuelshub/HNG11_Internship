@@ -21,7 +21,7 @@ type Failure struct {
 func HelloHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	visitorName := r.URL.Query().Get("client_name")
+	visitorName := r.URL.Query().Get("visitor_name")
 	if visitorName == "" {
 		w.WriteHeader(http.StatusBadRequest)
 		failure := Failure{Message: "visitor_name field is required"}
