@@ -121,9 +121,9 @@ Successful response: Return the payload below with a 200 success status code.
       "user": {
 	      "userId": "string",
 	      "firstName": "string",
-				"lastName": "string",
-				"email": "string",
-				"phone": "string",
+          "lastName": "string",
+          "email": "string",
+          "phone": "string",
       }
     }
 }
@@ -150,9 +150,9 @@ Successful response: Return the payload below with a 200 success status code.
     "data": {
       "userId": "string",
       "firstName": "string",
-			"lastName": "string",
-			"email": "string",
-			"phone": "string"
+      "lastName": "string",
+      "email": "string",
+      "phone": "string"
     }
 }
 ```
@@ -164,13 +164,13 @@ Successful response: Return the payload below with a 200 success status code.
 ```
 {
     "status": "success",
-		"message": "<message>",
+	"message": "<message>",
     "data": {
       "organisations": [
 	      {
 		      "orgId": "string",
-					"name": "string",
-					"description": "string",
+              "name": "string",
+              "description": "string",
 	      }
       ]
     }
@@ -184,7 +184,7 @@ Successful response: Return the payload below with a 200 success status code.
 ```
 {
     "status": "success",
-		"message": "<message>",
+	"message": "<message>",
     "data": {
 			"orgId": "string", // Unique
 			"name": "string", // Required and cannot be null
@@ -212,8 +212,8 @@ Successful response: Return the payload below with a 201 success status code.
     "message": "Organisation created successfully",
     "data": {
 	      "orgId": "string", 
-				"name": "string", 
-				"description": "string"
+          "name": "string", 
+          "description": "string"
     }
 }
 ```
