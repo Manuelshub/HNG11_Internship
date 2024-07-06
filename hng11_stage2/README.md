@@ -145,7 +145,7 @@ Successful response: Return the payload below with a 200 success status code.
 
 ```
 {
-		"status": "success",
+	"status": "success",
     "message": "<message>",
     "data": {
       "userId": "string",
